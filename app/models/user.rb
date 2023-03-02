@@ -8,6 +8,9 @@ class User < ApplicationRecord
   has_many :book_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
+  has_many :dm_sent, class_name: "DirectMessage", foreign_key: "from_id", dependent: :destroy
+  has_many :dm_received, class_name: "DirectMessage", foreign_key: "to_id", dependent: :destroy
+
   has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   has_many :followers, through: :reverse_of_relationships, source: :follower
 
