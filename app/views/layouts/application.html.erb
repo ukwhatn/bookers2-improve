@@ -1,98 +1,19 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Bookers2</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
-    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
-
-  <body class="d-flex flex-column vh-100">
-    <header class="px-3 py-1 bg-dark">
-      <nav class="navbar navbar-expand-md navbar-dark">
-        <a class="navbar-brand" href="/">Bookers</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#globalNavBar" aria-controls="globalNavBar" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="globalNavBar">
-          <ul class="navbar-nav ml-auto" >
-            <% if user_signed_in? %>
-              <li class="nav-item">
-                <%= link_to user_path(current_user.id), class: 'nav-link text-white' do %>
-                  <i class="fas fa-home" aria-hidden="true"></i> Home
-                <% end %>
-              </li>
-              <li class="nav-item">
-                <%= link_to users_path, class: 'nav-link text-white' do %>
-                  <i class="fas fa-users" aria-hidden="true"></i> Users
-                <% end %>
-              </li>
-              <li class="nav-item">
-                <%= link_to books_path, class: 'nav-link text-white' do %>
-                  <i class="fas fa-book-open" aria-hidden="true"></i> Books
-                <% end %>
-              </li>
-              <li class="nav-item">
-                <%= link_to destroy_user_session_path, class: 'nav-link text-white', method: :delete do %>
-                  <i class="fas fa-sign-out-alt" aria-hidden="true"></i> Log out
-                <% end %>
-              </li>
-            <% else %>
-              <li class="nav-item">
-                <%= link_to root_path, class: 'nav-link text-white' do %>
-                  <i class="fas fa-home" aria-hidden="true"></i> Home
-                <% end %>
-              </li>
-              <li class="nav-item">
-                <%= link_to home_about_path, class: 'nav-link text-white' do %>
-                  <i class="fas fa-link" aria-hidden="true"></i> About
-                <% end %>
-              </li>
-              <li class="nav-item">
-                <%= link_to new_user_registration_path, class: 'nav-link text-white' do %>
-                  <i class="fas fa-user-plus" aria-hidden="true"></i> Sign up
-                <% end %>
-              </li>
-              <li class="nav-item">
-                <%= link_to new_user_session_path, class: 'nav-link text-white' do %>
-                  <i class="fas fa-sign-in-alt" aria-hidden="true"></i> Log in
-                <% end %>
-              </li>
-            <% end %>
-          </ul>
-        </div>
-      </nav>
-    </header>
-    <main class="mb-auto mx-3">
-      <div class="flash-notifications my-2">
-        <% flash.each do |key, value| %>
-          <% if key == "notice" %>
-            <% cls = "notice alert alert-success" %>
-          <% else %>
-            <% cls = "error alert alert-danger" %>
-          <% end %>
-         <%= content_tag(:div, value, class: cls) %>
-        <% end %>
-        <% [@new_book, @user, @book].each do |edit_target| %>
-          <% if edit_target and  edit_target.errors.any? %>
-            <div class="error alert alert-danger">
-              <%= edit_target.errors.count %> error(s) occurred.
-              <ul>
-                <% edit_target.errors.full_messages.each do |message| %>
-                  <li><%= message %></li>
-                <% end %>
-              </ul>
-            </div>
-          <% end %>
-        <% end %>
-      </div>
-      <%= yield %>
-    </main>
-    <footer class="bg-dark text-white p-3 text-right">
-      © 2022 Yuki Watanabe
-    </footer>
-  </body>
+<head>
+  <title>Bookers2Ver2</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+<body>
+<%= render 'layouts/header' %>
+<main>
+  <p id="notice"><%= notice %></p>
+  <%= yield %>
+</main>
+<%= render 'layouts/footer' %>
+</body>
 </html>
