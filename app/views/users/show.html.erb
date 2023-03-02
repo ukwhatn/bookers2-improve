@@ -1,0 +1,13 @@
+
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render "info", user: @user, is_current_user: @user == current_user %>
+      <%= render "books/new", new_book: @new_book %>
+    </div>
+    <div class="col-md-8 offset-md-1">
+      <h2>Books</h2>
+      <%= render "books/list", books: @user.books %>
+    </div>
+  </div>
+</div>

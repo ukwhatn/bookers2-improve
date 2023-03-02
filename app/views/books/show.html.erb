@@ -1,0 +1,54 @@
+
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render "users/info", user: @book.user, is_current_user: @book.user == current_user %>
+      <%= render "new", new_book: @new_book %>
+    </div>
+    <div class="col-md-8 offset-md-1">
+      <h2>Book detail</h2>
+      <table class="table">
+        <tbody>
+          <tr>
+            <td>
+              Title
+            </td>
+            <td>
+              <%= link_to @book.title, book_path(@book.id) %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Opinion
+            </td>
+            <td>
+              <%= @book.body %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              User
+            </td>
+            <td>
+              <%= link_to user_path(@book.user.id) do %>
+                <%= image_tag @book.user.get_profile_image(100,100) %>
+                <%= @book.user.name %>
+              <% end %>
+            </td>
+          </tr>
+          <% if @book.user == current_user %>
+            <tr>
+              <td>
+                Manage
+              </td>
+              <td>
+                <%= link_to "Edit", edit_book_path(@book.id), class: "btn btn-sm btn-success" %>
+                <%= link_to "Destroy", book_path(@book.id), class: "btn btn-sm btn-danger", method: :delete,  "data-confirm" => "本当に削除しますか？" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

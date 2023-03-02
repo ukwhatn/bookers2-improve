@@ -1,0 +1,27 @@
+
+
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <div class="col-md-8">
+      <h2>
+        User info
+      </h2>
+      
+      <%= form_with model: @user do |f| %>
+        <div class="form-group">
+          <label for="userName">Name</label>
+          <%= f.text_field :name, class: "form-control", id: "userName" %>
+        </div>
+        <div class="form-group">
+          <label for="userImage">Image</label>
+          <%= f.file_field :profile_image, class: "form-control-file", id: "userImage" %>
+        </div>
+        <div class="form-group">
+          <label for="userIntro">Introduction</label>
+          <%= f.text_field :introduction, class: "form-control", id: "userIntro" %>
+        </div>
+        <%= f.submit "Update User", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>
