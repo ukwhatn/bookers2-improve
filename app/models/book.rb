@@ -3,6 +3,8 @@ class Book < ApplicationRecord
   has_many :book_comments
   has_many :favorites
 
+  has_one :view_count
+
   validates :title, presence: true
   validates :body, presence: true, length: { maximum: 200 }
 
