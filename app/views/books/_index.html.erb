@@ -23,7 +23,10 @@
         <%= render "book_comments/counter", book: book %>
       </td>
       <td>
-        閲覧数: <%= book.view_count.count  %>
+        <%= render "books/static_rate", book: book %>
+      </td>
+      <td>
+        閲覧数: <%= book.view_count.count %>
       </td>
     </tr>
   <% end %>
