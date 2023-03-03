@@ -14,6 +14,8 @@ Rails.application.routes.draw do
     get 'followers' => 'relationships#followers', as: 'followers'
 
     resources :direct_messages, only: [:index, :create]
+
+    get "daily_posts" => "users#daily_posts"
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

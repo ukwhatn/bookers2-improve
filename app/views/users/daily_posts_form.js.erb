@@ -1,0 +1,12 @@
+$('.daily_posts_result').html(`
+  <table class="table">
+    <tr>
+      <td>
+        投稿数
+      </td>
+      <td>
+        <%= j( @books.count ) %>
+      </td>
+    </tr>
+  </table>
+`)
