@@ -25,5 +25,5 @@ Rails.application.routes.draw do
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  get '/search', to: 'searches#search'
+  get '/search/tag/:id', to: 'searches#tag_search', as: "tag_search"
 end

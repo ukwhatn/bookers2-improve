@@ -2,6 +2,8 @@ class Book < ApplicationRecord
   belongs_to :user
   has_many :book_comments
   has_many :favorites
+  has_many :book_tags
+  has_many :tags, through: :book_tags
 
   has_one :view_count
 
@@ -23,5 +25,21 @@ class Book < ApplicationRecord
 
   def favorited_by?(user)
     favorites.where(user_id: user.id).exists?
+  end
+
+  def save_tags(tag_names)
+    current_tags = []
+    current_tags = self.tags.pluck(:name) unless self.tags.nil?
+
+    tag_names_for_remove = current_tags - tag_names
+    tag_names_for_save = tag_names - current_tags
+
+    tag_names_for_remove.each do |tag_name|
+      self.tags.delete Tag.find_by(name: tag_name)
+    end
+    tag_names_for_save.each do |tag_name|
+      self.tags << Tag.find_or_create_by(name: tag_name)
+    end
+
   end
 end
