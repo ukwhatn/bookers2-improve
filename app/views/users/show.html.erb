@@ -58,6 +58,71 @@
           </tbody>
         </table>
       </div>
+      <h3>投稿数の推移</h3>
+      <table class='table table-bordered'>
+        <thead>
+        <tr>
+          <th>６日前</th>
+          <th>５日前</th>
+          <th>４日前</th>
+          <th>３日前</th>
+          <th>２日前</th>
+          <th>１日前</th>
+          <th>今日</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td><%= @books.created_6day_ago.count %></td>
+          <td><%= @books.created_5day_ago.count %></td>
+          <td><%= @books.created_4day_ago.count %></td>
+          <td><%= @books.created_3day_ago.count %></td>
+          <td><%= @books.created_2day_ago.count %></td>
+          <td><%= @books.created_yesterday.count %></td>
+          <td><%= @books.created_today.count %></td>
+        </tr>
+        </tbody>
+      </table>
+      <canvas id="chart-wrap"></canvas>
+      <script>
+          $(document).on('turbolinks:load', function () {
+              new Chart(document.getElementById("chart-wrap"), {
+                  type: 'line',
+                  data: {
+                      labels: ['6日前', '5日前', '4日前', '3日前', '2日前', '1日前', '今日'],
+                      datasets: [
+                          {
+                              label: '投稿した本の数',
+                              data: [
+                                  <%= @books.created_6day_ago.count %>,
+                                  <%= @books.created_5day_ago.count %>,
+                                  <%= @books.created_4day_ago.count %>,
+                                  <%= @books.created_3day_ago.count %>,
+                                  <%= @books.created_2day_ago.count %>,
+                                  <%= @books.created_yesterday.count %>,
+                                  <%= @books.created_today.count %>
+                              ],
+                              borderColor: "rgba(200,0,0,1)",
+                              backgroundColor: "white",
+                              tension: 0.2
+                          }
+                      ],
+                  },
+                  options: {
+                      responsive: true,
+                      scales: {
+                          y: {
+                              suggestedMin: 0,
+                              suggestedMax: 10
+                          },
+                          x: {
+                              stacked: true
+                          },
+                      },
+                  }
+              });
+          });
+      </script>
     </div>
   </div>
 </div>

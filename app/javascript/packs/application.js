@@ -10,6 +10,7 @@ import "channels"
 import jQuery from "jquery"
 import "popper.js"
 import "bootstrap"
+import Chart from 'chart.js/auto';
 
 import '@fortawesome/fontawesome-free/js/all';
 import "../stylesheets/application"
@@ -20,3 +21,4 @@ ActiveStorage.start()
 
 global.$ = jQuery;
 window.$ = jQuery;
+global.Chart = Chart;
