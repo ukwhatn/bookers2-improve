@@ -12,13 +12,18 @@ class BooksController < ApplicationController
 
   def index
     #@books = Book.all
-    to = Time.current.at_end_of_day
-    from = (to - 6.day).at_beginning_of_day
-    @books = Book.all.sort {
-      |a, b|
-      b.favorites.where(created_at: from...to).size <=>
-        a.favorites.where(created_at: from...to).size
-    }
+    case params[:sort]
+    when "favorites" then
+      to = Time.current.at_end_of_day
+      from = (to - 6.day).at_beginning_of_day
+      @books = Book.all.sort {
+        |a, b|
+        b.favorites.where(created_at: from...to).size <=>
+          a.favorites.where(created_at: from...to).size
+      }
+    else
+      @books = Book.all.order(params[:sort])
+    end
 
     @book = Book.new
   end
