@@ -5,11 +5,15 @@ class BooksController < ApplicationController
   def show
     @book = Book.find(params[:id])
     @book_comment = BookComment.new
+
+    @q = Book.ransack(params[:q])
   end
 
   def index
     @books = Book.all
     @book = Book.new
+
+    @q = Book.ransack(params[:q])
   end
 
   def create
