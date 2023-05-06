@@ -15,6 +15,7 @@ import '@fortawesome/fontawesome-free/js/all';
 import "../stylesheets/application"
 
 import "./slick"
+import "./jpostal"
 
 Rails.start()
 Turbolinks.start()

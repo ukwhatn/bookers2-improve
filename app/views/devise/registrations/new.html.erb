@@ -23,6 +23,18 @@
           <%= f.label :password_confirmation %><br/>
           <%= f.password_field :password_confirmation, autocomplete: "off", class: "password_confirm" %>
         </div>
+        <div class="field">
+          <%= f.label :postal_code %><br/>
+          <%= f.text_field :postal_code, class:"jpostal postal_code" %>
+        </div>
+        <div class="field">
+          <%= f.label :prefecture_code %><br/>
+          <%= f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name, { prompt: '選択してください' }, class: 'form-control' %>
+        </div>
+        <div class="field">
+          <%= f.label :address %><br/>
+          <%= f.text_field :address, class: "address"%>
+        </div>
         <div class="actions">
           <%= f.submit "Sign up", class: 'btn btn-sm btn-success' %>
         </div>
