@@ -16,6 +16,13 @@ class BooksController < ApplicationController
     @q = Book.ransack(params[:q])
   end
 
+  def gallery
+    @books = Book.all
+    @book = Book.new
+
+    @q = Book.ransack(params[:q])
+  end
+
   def create
     @book = Book.new(book_params)
     @book.user_id = current_user.id
