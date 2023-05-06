@@ -87,6 +87,10 @@ GEM
     devise-i18n (1.10.3)
       devise (>= 4.8.0)
     diff-lcs (1.4.4)
+    dotenv (2.8.1)
+    dotenv-rails (2.8.1)
+      dotenv (= 2.8.1)
+      railties (>= 3.2)
     erubi (1.10.0)
     factory_bot (6.2.0)
       activesupport (>= 5.0.0)
@@ -244,6 +248,7 @@ DEPENDENCIES
   capybara (>= 2.15)
   devise
   devise-i18n
+  dotenv-rails
   factory_bot_rails
   faker
   image_processing (~> 1.2)
